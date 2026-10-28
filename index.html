@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f7f2" />
+    <meta name="description" content="上学路上私人助手：天气、通勤与每日简报。" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>早知道 · 每日通勤助手</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#" aria-label="早知道首页">
+          <span class="brand-mark">早</span>
+          <span class="brand-copy"><strong>早知道</strong><small>YOUR DAILY CO-PILOT</small></span>
+        </a>
+
+        <div class="sidebar-label">你的早晨</div>
+        <nav class="main-nav" aria-label="主导航">
+          <a class="nav-item active" href="#overview"><span class="nav-icon">◫</span>今日简报</a>
+          <a class="nav-item" href="#commute"><span class="nav-icon">↗</span>上学路线</a>
+          <a class="nav-item" href="#signals"><span class="nav-icon">✳</span>今日情报</a>
+        </nav>
+
+        <div class="sidebar-spacer"></div>
+        <div class="sidebar-note">
+          <span class="note-orb">✦</span>
+          <p>每天少刷几个页面，<br />把重要的事先告诉你。</p>
+          <span class="note-caption">给忙碌早晨的一点从容</span>
+        </div>
+        <button class="profile-button" id="open-settings" type="button">
+          <span class="avatar">同</span>
+          <span><strong>我的通勤设置</strong><small>出发地 · 目的地 · 提醒</small></span>
+          <span class="profile-arrow">↗</span>
+        </button>
+      </aside>
+
+      <main class="main-content" id="overview">
+        <header class="topbar">
+          <div class="breadcrumb">个人助手 <span>/</span> 每日简报</div>
+          <div class="topbar-actions">
+            <span class="live-indicator"><i></i> 早间模式</span>
+            <button class="icon-button" id="refresh-button" type="button" aria-label="刷新天气" title="刷新天气">↻</button>
+          </div>
+        </header>
+
+        <section class="welcome-row">
+          <div>
+            <p class="eyebrow" id="today-label">你的星期一 · 早上好</p>
+            <h1>早上好，<span>今天也会顺利的。</span></h1>
+            <p class="welcome-subtitle">把路况、天气和重要消息，浓缩成出门前的一分钟。</p>
+          </div>
+          <div class="date-stamp"><span id="date-day">--</span><span id="date-month">---</span></div>
+        </section>
+
+        <section class="briefing-banner" aria-label="今日一句话简报">
+          <div class="banner-icon">✦</div>
+          <div class="banner-copy">
+            <span class="banner-kicker">60 秒早间简报 <span class="demo-tag" id="banner-tag">演示内容</span></span>
+            <p id="banner-text">今天路上比平时稍慢，建议提前 <strong>10 分钟</strong>出门。早间气温偏低，记得带件外套；有一条校园通知值得留意。</p>
+          </div>
+          <span class="banner-sparkle">✳</span>
+        </section>
+
+        <section class="overview-grid" aria-label="天气与通勤概览">
+          <article class="weather-card card">
+            <div class="card-heading">
+              <div><span class="section-kicker">01 / WEATHER</span><h2>今天的天气</h2></div>
+              <button class="text-button" id="locate-button" type="button">刷新数据 <span>↗</span></button>
+            </div>
+            <p class="weather-location" id="weather-location">开启定位或输入城市，查看实时天气</p>
+            <div class="weather-main">
+              <div class="temperature" id="temperature">--<span>°</span></div>
+              <div class="weather-condition"><span class="weather-symbol" id="weather-symbol">☼</span><strong id="weather-condition">等待天气数据</strong><small id="weather-range">今日 --° / --°</small></div>
+            </div>
+            <div class="weather-details">
+              <div><span class="detail-icon">↗</span><span>风速</span><strong id="wind-speed">--</strong></div>
+              <div><span class="detail-icon">◌</span><span>降水</span><strong id="precipitation">--</strong></div>
+              <div><span class="detail-icon">☂</span><span>出门建议</span><strong id="weather-advice">等待天气</strong></div>
+            </div>
+            <div class="weather-footer"><span><i class="source-dot"></i> Open-Meteo 实时天气</span><span id="weather-updated">尚未获取</span></div>
+          </article>
+
+          <article class="commute-card card" id="commute">
+            <div class="card-heading">
+              <div><span class="section-kicker">02 / YOUR ROUTE</span><h2>上学路上</h2></div>
+              <span class="demo-tag" id="commute-tag">路况演示</span>
+            </div>
+            <div class="route-endpoints">
+              <div class="route-marker start-marker"></div>
+              <div class="route-line"></div>
+              <div class="route-marker end-marker"></div>
+              <div class="route-labels">
+                <div><small>从</small><strong id="origin-label">设置你的出发地</strong></div>
+                <div><small>到</small><strong id="destination-label">设置学校地址</strong></div>
+              </div>
+            </div>
+            <div class="route-summary">
+              <div><span class="route-status"><i></i> 当前路况</span><strong id="commute-status">通勤时段可能较慢</strong></div>
+              <div class="route-minutes"><strong id="commute-minutes">—</strong><small>预计分钟</small></div>
+            </div>
+            <div class="route-actions">
+              <a class="button button-dark" id="map-button" href="https://uri.amap.com/" target="_blank" rel="noopener noreferrer">查看地图路线 <span>↗</span></a>
+              <a class="button button-light" id="taxi-button" href="https://uri.amap.com/" target="_blank" rel="noopener noreferrer">叫车出发 <span>↗</span></a>
+            </div>
+            <p class="route-disclaimer">实际路况与叫车服务由地图应用提供；请在应用内确认路线、价格并下单。</p>
+          </article>
+        </section>
+
+        <section class="signals-section" id="signals">
+          <div class="section-title-row">
+            <div><span class="section-kicker">03 / WHAT MATTERS</span><h2>今天值得知道</h2></div>
+            <button class="text-button" id="show-all-button" type="button">查看全部 <span>→</span></button>
+          </div>
+          <div class="signals-grid" id="signals-list"></div>
+          <p class="data-note" id="data-note"><span>ⓘ</span> 当前为演示模式；启动后端 <code>python server.py</code> 后自动切换为实时数据。</p>
+        </section>
+
+        <footer class="page-footer"><span>早知道 · 你的私人通勤助手</span><span>轻装出门，心里有数。 <b>✳</b></span></footer>
+      </main>
+    </div>
+
+    <dialog class="settings-dialog" id="settings-dialog" aria-labelledby="settings-title">
+      <form id="settings-form">
+        <div class="dialog-heading"><div><span class="section-kicker">MAKE IT YOURS</span><h2 id="settings-title">你的通勤设置</h2></div><button class="icon-button close-button" type="button" id="close-settings" aria-label="关闭">×</button></div>
+        <p class="dialog-intro">设置好常用地点和提醒时间，早间简报就更懂你的日常。</p>
+        <label>出发地<input id="origin-input" name="origin" type="text" placeholder="例如：家 / 街道地址" autocomplete="street-address" /></label>
+        <label>学校地址<input id="destination-input" name="destination" type="text" placeholder="例如：学校名称 / 街道地址" /></label>
+        <label>到校时间<input id="arrival-input" name="arrival" type="time" value="08:00" /></label>
+        <label>早间推送时间<input id="reminder-input" name="reminder" type="time" value="07:00" /></label>
+        <label class="notification-option"><input id="notification-input" type="checkbox" /> 页面打开时也发送浏览器提醒</label>
+        <p class="notification-hint">地址和到校时间会同步到本地后端；微信推送时间保存在 config.json，修改后请重新运行 install-task.ps1 更新计划任务。</p>
+        <div class="dialog-actions"><button class="button button-light" type="button" id="cancel-settings">取消</button><button class="button button-dark" type="submit">保存设置 <span>→</span></button></div>
+      </form>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./app.js" defer></script>
+  </body>
+</html>

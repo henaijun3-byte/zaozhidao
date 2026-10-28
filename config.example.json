@@ -1,0 +1,12 @@
+{
+  "origin": "",
+  "destination": "",
+  "city": "",
+  "timezone": "Asia/Singapore",
+  "arrival_time": "",
+  "schedule": {},
+  "push_time": "07:00",
+  "serverchan_sendkey": "",
+  "home_coord": null,
+  "school_coord": null
+}

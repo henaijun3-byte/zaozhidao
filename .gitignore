@@ -1,0 +1,10 @@
+# 本地配置（含 API key，不要提交）
+config.json
+
+# Python
+__pycache__/
+*.pyc
+
+# 同目录下的其他项目（各自独立管理，不进本仓库）
+quote-reader/
+saas-dashboard/

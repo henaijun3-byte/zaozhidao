@@ -1,0 +1,18 @@
+{
+  "name": "早知道 · 每日通勤助手",
+  "short_name": "早知道",
+  "description": "上学路上私人助手：天气、通勤与每日简报。",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f7f7f2",
+  "theme_color": "#f7f7f2",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
